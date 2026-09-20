@@ -1,0 +1,22 @@
+name: Vprofile CI/CD Workflow
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+
+  pull:
+    branches: [ "main", "develop" ]
+  workflow_dispatch:
+
+  jobs:
+    Build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Code checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+
+        - name: Maven Build
+          run: mvn install
+      
