@@ -19,4 +19,18 @@ jobs:
 
       - name: Maven Build
         run: mvn install
+  
+  Testing:
+    runs-on: ububuntu-latest
+    needs: Build
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run on maven test
+        run: mvn test
+
+      - name: Checkstyle
+        run: mvn checkstyle
       
